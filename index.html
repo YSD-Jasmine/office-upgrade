@@ -17,7 +17,7 @@
             --border: #e0e4e8;
             --shadow: 0 2px 12px rgba(0,0,0,0.06);
         }
-         
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -93,10 +93,48 @@
             border-radius: 20px;
         }
 
+        /* ---------- 下载区域 ---------- */
+        .download-bar {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 20px 25px;
+            margin: 25px 0 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .download-bar h2 {
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        .download-link {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 8px 0;
+            transition: background 0.2s;
+        }
+        .download-link:hover { background: #1c6ea4; }
+        .extract-code {
+            display: inline-block;
+            background: #f0f3f7;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e67e22;
+            margin-left: 15px;
+        }
+
         /* ---------- 头部 ---------- */
         .hero {
             text-align: center;
-            padding: 15px 10px 10px;
+            padding: 10px 10px 5px;
         }
         .hero h1 {
             font-size: 2em;
@@ -224,6 +262,29 @@
         }
         .contact-card a:hover { text-decoration: underline; }
 
+        /* 收款码 */
+        .qr-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .qr-item {
+            text-align: center;
+        }
+        .qr-item img {
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        .qr-item p {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
         /* ---------- 底部 ---------- */
         .footer {
             text-align: center;
@@ -265,10 +326,19 @@
 
 <div class="container">
 
+    <!-- ===== 下载区域 ===== -->
+    <div class="download-bar">
+        <h2>📥 软件下载</h2>
+        <p>安装包存放于百度网盘，请下载后安装并激活：</p>
+        <a class="download-link" href="https://pan.baidu.com/s/1OlH18a3UxbwHP2p4ys3ZwQ" target="_blank">🔗 百度网盘链接</a>
+        <span class="extract-code">提取码: 6666</span>
+        <p style="margin-top:10px; font-size:0.9em; color:#666;">如链接失效，请联系QQ或微信补发。</p>
+    </div>
+
     <!-- ===== 头部 ===== -->
     <div class="hero">
         <h1>🚀 易建通 — 智能办公平台</h1>
-        <p class="subtitle">基于 Excel 的 VSTO 插件 · 支持多领域  让内业资料生成进入秒时代</p>
+        <p class="subtitle">基于 Excel 的 VSTO 插件 · 支持多领域多专业 让内业资料生成进入秒时代</p>
     </div>
 
     <!-- ===== 原价卡片（保留） ===== -->
@@ -403,6 +473,7 @@
         </table>
     </div>
 
+    <!-- ===== 联系方式（含收款码） ===== -->
     <div class="contact-card">
         <h2>📞 如何购买？</h2>
         <p>请联系开发者获取注册码：</p>
