@@ -3,110 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>建设工程综合办公系统 - 会员升级</title>
+    <title>易建通 - 会员升级</title>
     <style>
+        :root {
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --sub: #7f8c8d;
+            --blue: #2980b9;
+            --orange: #e67e22;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --border: #e0e4e8;
+            --shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 0 15px;
-            background: #f5f7fa;
-            color: #333;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px 12px 50px;
         }
-        h1 {
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 头部 ---------- */
+        .hero {
             text-align: center;
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin: 25px 0;
+            padding: 30px 10px 20px;
         }
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px 25px;
+        .hero h1 {
+            font-size: 2em;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+        .hero .subtitle {
+            color: var(--sub);
+            font-size: 1em;
+        }
+
+        /* ---------- 价格卡片 ---------- */
+        .price-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 20px 0 30px;
+        }
+        .price-card {
+            flex: 1 1 220px;
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 22px 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: .2s;
+        }
+        .price-card:hover { border-color: var(--blue); }
+        .price-card.recommend {
+            border-color: var(--orange);
+            position: relative;
+        }
+        .price-card.recommend::before {
+            content: "推荐";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange);
+            color: #fff;
+            padding: 3px 16px;
+            border-radius: 20px;
+            font-size: .8em;
+            font-weight: bold;
+        }
+        .price-card h2 {
+            font-size: 1.2em;
+            margin-bottom: 6px;
+        }
+        .price-card .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--orange);
+            margin: 8px 0;
+        }
+        .price-card .price small {
+            font-size: .5em;
+            color: var(--sub);
+            font-weight: normal;
+        }
+
+        /* ---------- 对比表格 ---------- */
+        .section-title {
+            font-size: 1.3em;
+            margin: 28px 0 12px;
+            padding-left: 6px;
+            border-left: 4px solid var(--blue);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .card h2 {
-            margin-top: 0;
-            color: #2c3e50;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            font-size: .92em;
         }
-        .price {
-            font-size: 1.5em;
-            color: #e67e22;
-            font-weight: bold;
+        thead th {
+            background: #f0f3f7;
+            padding: 10px 12px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
         }
-        ul {
-            line-height: 1.8;
-            padding-left: 20px;
+        tbody td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
         }
-        .contact {
-            color: #2980b9;
-            font-weight: bold;
+        tbody td:first-child { text-align: left; font-weight: 500; }
+        tbody tr:hover { background: #fafbfc; }
+
+        .check { color: var(--green); font-size: 1.1em; }
+        .cross { color: #ccc; font-size: 1.1em; }
+
+        /* ---------- 试用提示 ---------- */
+        .trial-note {
+            background: #fff8e1;
+            border-left: 4px solid var(--orange);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: .95em;
+        }
+
+        /* ---------- 联系方式 ---------- */
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 22px 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin: 30px 0 15px;
+        }
+        .contact-card h2 { margin-bottom: 10px; }
+        .contact-card a {
+            color: var(--blue);
             text-decoration: none;
+            font-weight: bold;
         }
-        .contact:hover {
-            text-decoration: underline;
-        }
+        .contact-card a:hover { text-decoration: underline; }
+
+        /* ---------- 底部 ---------- */
         .footer {
             text-align: center;
-            color: #95a5a6;
-            font-size: 0.9em;
-            margin-top: 30px;
-            padding: 15px 0;
-            border-top: 1px solid #ecf0f1;
-        }
-        @media (max-width: 500px) {
-            h1 { font-size: 1.5em; }
-            .card { padding: 15px; }
+            color: #aaa;
+            font-size: .85em;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
 <body>
-    <h1>🚀 建设工程综合办公系统 - 会员升级</h1>
 
-    <div class="card">
-        <h2>普通会员 <span class="price">¥199/年</span></h2>
-        <ul>
-            <li>委托单、报告、检验批无限配置生成</li>
-            <li>文档配置器</li>
-            <li>基础工具箱（批量填充、信息提取等）</li>
-            <li>一机一码，年度授权</li>
-        </ul>
+<div class="container">
+
+    <!-- ===== 头部 ===== -->
+    <div class="hero">
+        <h1>🚀 易建通 — 智能办公平台</h1>
+        <p class="subtitle">基于 Excel / Word 的 VSTO 智能办公插件</p>
     </div>
 
-    <div class="card">
-        <h2>高级会员 <span class="price">¥2999/年</span></h2>
-        <ul>
-            <li><strong>包含普通会员全部功能</strong></li>
-            <li>Word 报审单生成</li>
-            <li>批量清页、删列、替换、CAD 数据导入</li>
-            <li>图表转图片、公式转数值</li>
-            <li>二次填充、报告记录填充</li>
-        </ul>
+    <!-- ===== 三档价格卡 ===== -->
+    <div class="price-row">
+        <div class="price-card">
+            <h2>普通会员</h2>
+            <div class="price">¥199 <small>/ 年</small></div>
+            <p>核心生成 + 基础工具箱</p>
+        </div>
+        <div class="price-card recommend">
+            <h2>高级会员</h2>
+            <div class="price">¥2999 <small>/ 年</small></div>
+            <p>全套后处理 + 图表 + CAD</p>
+        </div>
+        <div class="price-card">
+            <h2>超级会员</h2>
+            <div class="price">¥5999 <small>/ 年</small></div>
+            <p>无限扩展 + 旗舰功能</p>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>超级会员 <span class="price">¥5999/年</span></h2>
-        <ul>
-            <li><strong>包含高级会员全部功能</strong></li>
-            <li>超级填充、超级提取</li>
-            <li>无限自定义大类创建</li>
-            <li>优先技术支持</li>
-        </ul>
+    <!-- ===== 功能对比表 ===== -->
+
+    <!-- 系统设置 -->
+    <div class="section-title">⚙️ 系统设置</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>功能</th><th>普通</th><th>高级</th><th>超级</th></tr></thead>
+            <tbody>
+                <tr><td>系统登录 / 退出</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>存储设置（工程资料根目录）</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>普通 / 高级 / 超级会员注册</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>解绑</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>检查更新</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>文档配置器</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>切换模板（嵌入 / 本地）</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="card">
+    <!-- 办公区 -->
+    <div class="section-title">📁 办公区（动态菜单）</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>一级菜单</th><th>说明</th><th>普通</th><th>高级</th><th>超级</th></tr></thead>
+            <tbody>
+                <tr><td>委托单</td><td>系统自带，动态菜单</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>报告</td><td>系统自带，动态菜单</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>检验批</td><td>系统自带，动态菜单</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>新建大类</td><td>自定义动态菜单</td><td>最多1个</td><td>最多3个</td><td><strong>无限</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 工具箱 -->
+    <div class="section-title">🧰 工具箱</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>功能</th><th>说明</th><th>普通</th><th>高级</th><th>超级</th></tr></thead>
+            <tbody>
+                <tr><td>坐标点数统计</td><td>统计 DAT 文件点数</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>提取文件名</td><td>提取文件名列表</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>信息提取</td><td>多工作簿 → 台账提取</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量填充</td><td>台账 → 多工作簿填充</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>超级填充</td><td>多工作表多单元格映射填充</td><td class="cross">✘</td><td class="cross">✘</td><td class="check">✔</td></tr>
+                <tr><td>超级提取</td><td>多工作表多单元格映射提取</td><td class="cross">✘</td><td class="cross">✘</td><td class="check">✔</td></tr>
+                <tr><td>二次填充</td><td>记录 → 框架报告填充</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>报告记录填充</td><td>原始记录填充报告</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量重命名</td><td>按台账重命名文件</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>二维码生成</td><td>生成二维码图片</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>普通插入图片</td><td>单个工作表 1 个单元格</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量图片插入</td><td>多工作表各 1 单元格</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>多工作表多单元格图片插入</td><td>最灵活的图片插入</td><td class="cross">✘</td><td class="cross">✘</td><td class="check">✔</td></tr>
+                <tr><td>就地图片插入</td><td>当前表内批量插图片</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>图表转图片</td><td>图表 → 图片固化</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>PDF 合并 / 拆分</td><td>PDF 工具</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>打印</td><td>批量打印 / PDF 导出</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>文件查询</td><td>已建立的本地文件库查询</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>文件管理</td><td>管理本地文件库，可增删</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>文档目录</td><td>定义 Json 路径</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>工作表导航</td><td>选择工作表显隐</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>创建工作表</td><td>当前工作簿创建多个工作表</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>提取工作表名称</td><td>提取当前工作簿所有表名</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>重命名工作表</td><td>批量重命名工作表</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>化零为整</td><td>多工作簿合并为一个</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>合二为一</td><td>不同前缀两工作簿合并</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>删除工作表</td><td>删除指定工作表（含隐藏）</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>拆分工作表</td><td>拆分工作表到独立文件</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>清除公式</td><td>批量清除公式</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量删页</td><td>按数据量删除空白页</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量删列</td><td>跨文件批量删除列</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>批量替换</td><td>跨文件批量替换值</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>登记台账</td><td>DWG 图纸提取到台账</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 图表天地 -->
+    <div class="section-title">📊 图表天地</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>功能</th><th>说明</th><th>普通</th><th>高级</th><th>超级</th></tr></thead>
+            <tbody>
+                <tr><td>击实图表</td><td>自动绘制击实曲线</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>高填方颗粒分析图表</td><td>自动绘制颗粒分析曲线</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>细度模数图表</td><td>自动绘制细度模数曲线</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>道面粗集料图表</td><td>自动绘制道面粗集料曲线</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>水稳粗集料图表</td><td>自动绘制水稳粗集料曲线</td><td class="cross">✘</td><td class="check">✔</td><td class="check">✔</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 启动程序 -->
+    <div class="section-title">🔗 启动程序</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>功能</th><th>说明</th><th>普通</th><th>高级</th><th>超级</th></tr></thead>
+            <tbody>
+                <tr><td>DeepSeek</td><td>打开对应程序</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>微信</td><td>打开对应程序</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+                <tr><td>AutoCAD</td><td>打开对应程序</td><td class="check">✔</td><td class="check">✔</td><td class="check">✔</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 试用期策略 -->
+    <div class="trial-note">
+        <strong>🎁 试用期（30天）额外开放：</strong>
+        批量清页（高频需求，体验后想继续用就会升级）<br>
+        超级填充（旗舰功能，体验后想继续用必须升到超级会员）
+    </div>
+
+    <!-- 总结 -->
+    <div class="section-title">📋 总结</div>
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>会员等级</th><th>可用功能数</th><th>核心特点</th></tr></thead>
+            <tbody>
+                <tr><td>普通会员</td><td>~35 个</td><td>核心生成 + 基础工具箱，满足日常 80% 需求</td></tr>
+                <tr><td>高级会员</td><td>~50 个</td><td>全套后处理工具，批量操作、图表、CAD 导入</td></tr>
+                <tr><td>超级会员</td><td>~55 个（全）</td><td>无限扩展 + 旗舰功能，企业级定制能力</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="contact-card">
         <h2>📞 如何购买？</h2>
         <p>请联系开发者获取注册码：</p>
-        <p>QQ：<a class="contact" href="tencent://message/?uin=969814912">969814912</a></p>
-    <p>微信：<span class="contact">969814912</span></p>
-    <p style="color:#888; font-size:0.9em;">付款后提供机器码，当天即可收到注册码。</p>
+        <p>QQ：<a href="tencent://message/?uin=969814912">969814912</a></p>
+        <p>微信：<strong>969814912</strong></p>
+        <p style="color:#888; font-size:0.9em;">付款后提供机器码，当天即可收到注册码。</p>
     </div>
 
     <div class="footer">
-        丛台区易顺达软件工作室（个体工商户）
+        丛台区易顺达软件工作室（个体工商户）&nbsp;&nbsp;|&nbsp;&nbsp; 易建通 VSTO 办公平台
     </div>
+
+</div>
+
 </body>
 </html>
